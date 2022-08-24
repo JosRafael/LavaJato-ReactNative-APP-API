@@ -31,4 +31,4 @@ Agora basta abrir o emulador pelo seu computador, ou o aplicativo do Expo no seu
 
 ## 🧱Status: Em desenvolvimento
 
-Projeto para a Disciplina de P.I(Projeto Integrador)-3
+Projeto para a Disciplina de P.I(Projeto Integrador)
