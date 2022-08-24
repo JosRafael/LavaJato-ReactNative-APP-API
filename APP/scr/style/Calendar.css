@@ -1,0 +1,22 @@
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+.fc-unthemed td.fc-today {
+    background: rgb(213, 215, 247);
+}
+
+
+.title {
+    font-size: 26px;
+    letter-spacing: 24px;
+    font-weight: 300;
+    color: #777;
+    margin-top: -5px;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 24px;
+        letter-spacing: 5px;
+    }
+}
