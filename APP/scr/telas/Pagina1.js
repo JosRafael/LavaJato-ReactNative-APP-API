@@ -1,59 +1,26 @@
-import React from "react"
-import { View, Button, Text, KeyboardAvoidingView, StyleSheet, Image} from "react-native"
-import MyButton from "../components/Button"
+import React from "react";
+import {
+  View,
+  Button,
+  Text,
+  KeyboardAvoidingView,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
+import styles from "../style/styles";
 
-export default function Pagina1({navigation}) {
-    return(
-        <KeyboardAvoidingView style={styles.container}>
-            <View>
-                <Image style={styles.image} 
-                    source={require('../../assets/Carwash2.png')}/>
-            </View>
-            <Text style={styles.texto1}>Nunca ficou tão fácil lavar seu carro!</Text>
-            <Text style={styles.texto2}>Buscar, agendar</Text>            
-            
-            <View style={styles.b}>
-                <MyButton text="Já Tenho uma Conta"
-                    onPress={() => {
-                        navigation.navigate("Login")
-                    }}/>
-        
-                <MyButton text="Criar uma Conta"
-                    onPress={() => {
-                        navigation.navigate("Cadastro")
-                    }}/>
+export default function Pagina1({ navigation }) {
+  return (
+    <View style={styles.carContainer}>
+      <ImageBackground
+        source={require("../../assets/limpeza.jpg")}
+        style={styles.image}
+      />
 
-                <MyButton text="Entrar como visitante"
-                    onPress={() => {
-                        navigation.navigate("Home")
-                    }}/>
-                    <MyButton text="Agendamentos Lava-Jato"
-                    onPress={() => {
-                        navigation.navigate("AgendamentoLava")
-                    }}/>
-            </View>
-        </KeyboardAvoidingView>
-  )
+      <View style={styles.titles}>
+        <Text style={styles.title}>Car Wash</Text>
+        <Text style={styles.subtitle}>Version 1.0 aplicattion</Text>
+      </View>
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffff',
-    },
-    image: {
-        height: 180,
-        width: 200,
-        margin: 25,
-    },
-    b: {
-        padding: 20,
-    },
-    texto1: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        textAlign: 'center',
-    }
-})

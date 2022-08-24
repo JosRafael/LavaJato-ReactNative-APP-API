@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Dimensions,
   FlatList,
@@ -11,32 +11,33 @@ import {
   View,
   Image,
   Animated,
-} from 'react-native';
+} from "react-native";
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import COLORS from '../components/colors';
-import lavajatos from '../components/lavajatos'
+import Icon from "react-native-vector-icons/MaterialIcons";
+import COLORS from "../components/colors";
+import lavajatos from "../components/lavajatos";
 
-//DIMENSIONANDO A TELA 
-const {width} = Dimensions.get('screen');
+//DIMENSIONANDO A TELA
+const { width } = Dimensions.get("screen");
 const cardWidth = width / 1.8;
 
 //BARRA DE DESTAQUES
-const HomeScreen = ({navigation}) => {
-  const categories = ['Todos', 'Popular', 'Top ', 'Destaques'];
+const HomeScreen = ({ navigation }) => {
+  const categories = ["Todos", "Popular", "Top ", "Destaques"];
   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
   const [activeCardIndex, setActiveCardIndex] = React.useState(0);
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
   //PREPARANDO OS ESTILOS DOS BOTÕES MENORES("todos, 'Popular', 'Top', 'Destaques')
-  const CategoryList = ({navigation}) => {
+  const CategoryList = ({ navigation }) => {
     return (
       <View style={style.categoryListContainer}>
         {categories.map((item, index) => (
           <TouchableOpacity
             key={index}
             activeOpacity={0.8}
-            onPress={() => setSelectedCategoryIndex(index)}>
+            onPress={() => setSelectedCategoryIndex(index)}
+          >
             <View>
               <Text
                 style={{
@@ -45,7 +46,8 @@ const HomeScreen = ({navigation}) => {
                     selectedCategoryIndex == index
                       ? COLORS.primary
                       : COLORS.grey,
-                }}>
+                }}
+              >
                 {item}
               </Text>
               {selectedCategoryIndex == index && (
@@ -56,7 +58,7 @@ const HomeScreen = ({navigation}) => {
                     width: 30,
                     backgroundColor: COLORS.primary,
                     marginTop: 2,
-                  }} 
+                  }}
                 />
               )}
             </View>
@@ -65,7 +67,7 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
-  const Card = ({lavajatos, index}) => {
+  const Card = ({ lavajatos, index }) => {
     const inputRange = [
       (index - 1) * cardWidth,
       index * cardWidth,
@@ -83,24 +85,27 @@ const HomeScreen = ({navigation}) => {
       <TouchableOpacity
         disabled={activeCardIndex != index}
         activeOpacity={1}
-        onPress={() => navigation.navigate('Detalhes', lavajatos)}>
-        <Animated.View style={{...style.card, transform: [{scale}]}}>
-          <Animated.View style={{...style.cardOverLay, opacity}} />
+        onPress={() => navigation.navigate("Detalhes", lavajatos)}
+      >
+        <Animated.View style={{ ...style.card, transform: [{ scale }] }}>
+          <Animated.View style={{ ...style.cardOverLay, opacity }} />
           <View style={style.priceTag}>
             <Text
-              style={{color: COLORS.white, fontSize: 20, fontWeight: 'bold'}}>
+              style={{ color: COLORS.white, fontSize: 20, fontWeight: "bold" }}
+            >
               R${lavajatos.price}
             </Text>
           </View>
           <Image source={lavajatos.image} style={style.cardImage} />
           <View style={style.cardDetails}>
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
               <View>
-                <Text style={{fontWeight: 'bold', fontSize: 17}}>
+                <Text style={{ fontWeight: "bold", fontSize: 17 }}>
                   {lavajatos.name}
                 </Text>
-                <Text style={{color: COLORS.grey, fontSize: 12}}>
+                <Text style={{ color: COLORS.grey, fontSize: 12 }}>
                   {lavajatos.location}
                 </Text>
               </View>
@@ -108,44 +113,50 @@ const HomeScreen = ({navigation}) => {
             </View>
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
+                flexDirection: "row",
+                justifyContent: "space-between",
                 marginTop: 10,
-              }}>
-              <View style={{flexDirection: 'row'}}>
+              }}
+            >
+              <View style={{ flexDirection: "row" }}>
                 <Icon name="star" size={15} color={COLORS.orange} />
                 <Icon name="star" size={15} color={COLORS.orange} />
                 <Icon name="star" size={15} color={COLORS.orange} />
                 <Icon name="star" size={15} color={COLORS.orange} />
                 <Icon name="star" size={15} color={COLORS.grey} />
               </View>
-              <Text style={{fontSize: 10, color: COLORS.grey}}>CarWASH</Text>
+              <Text style={{ fontSize: 10, color: COLORS.grey }}>CarWASH</Text>
             </View>
           </View>
         </Animated.View>
       </TouchableOpacity>
     );
   };
-  const TopLavaJatoCard = ({lavajatos}) => {
+  const TopLavaJatoCard = ({ lavajatos }) => {
     return (
       <View style={style.TopLavaJatoCard}>
         <View
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 5,
             right: 5,
             zIndex: 1,
-            flexDirection: 'row',
-          }}>
+            flexDirection: "row",
+          }}
+        >
           <Icon name="star" size={15} color={COLORS.orange} />
-          <Text style={{color: COLORS.white, fontWeight: 'bold', fontSize: 15}}>
+          <Text
+            style={{ color: COLORS.white, fontWeight: "bold", fontSize: 15 }}
+          >
             5.0
           </Text>
         </View>
         <Image style={style.TopLavaJatoCardImage} source={lavajatos.image} />
-        <View style={{paddingVertical: 5, paddingHorizontal: 10}}>
-          <Text style={{fontSize: 10, fontWeight: 'bold'}}>{lavajatos.name}</Text>
-          <Text style={{fontSize: 7, fontWeight: 'bold', color: COLORS.grey}}>
+        <View style={{ paddingVertical: 5, paddingHorizontal: 10 }}>
+          <Text style={{ fontSize: 10, fontWeight: "bold" }}>
+            {lavajatos.name}
+          </Text>
+          <Text style={{ fontSize: 7, fontWeight: "bold", color: COLORS.grey }}>
             {lavajatos.location}
           </Text>
         </View>
@@ -154,16 +165,21 @@ const HomeScreen = ({navigation}) => {
   };
   //FAZENDO O ESTILO PARA O NOME "LAVE SEU CARRO EM SALGUEIRO"
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
       <View style={style.header}>
-        <View style={{paddingBottom: 15}}>
-          <Text style={{fontSize: 30, fontWeight: 'bold'}}>
+        <View style={{ paddingBottom: 15 }}>
+          <Text style={{ fontSize: 30, fontWeight: "bold" }}>
             Lave seu carro
           </Text>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize: 30, fontWeight: 'bold'}}>em </Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ fontSize: 30, fontWeight: "bold" }}>em </Text>
             <Text
-              style={{fontSize: 30, fontWeight: 'bold', color: COLORS.primary}}>
+              style={{
+                fontSize: 30,
+                fontWeight: "bold",
+                color: COLORS.primary,
+              }}
+            >
               Salgueiro
             </Text>
           </View>
@@ -172,10 +188,10 @@ const HomeScreen = ({navigation}) => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={style.searchInputContainer}>
-          <Icon name="search" size={30} style={{marginLeft: 20}} />
+          <Icon name="search" size={30} style={{ marginLeft: 20 }} />
           <TextInput
             placeholder="Search"
-            style={{fontSize: 20, paddingLeft: 10}}
+            style={{ fontSize: 20, paddingLeft: 10 }}
           />
         </View>
         <CategoryList />
@@ -183,35 +199,38 @@ const HomeScreen = ({navigation}) => {
           <Animated.FlatList
             onMomentumScrollEnd={(e) => {
               setActiveCardIndex(
-                Math.round(e.nativeEvent.contentOffset.x / cardWidth),
+                Math.round(e.nativeEvent.contentOffset.x / cardWidth)
               );
             }}
             onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {x: scrollX}}}],
-              {useNativeDriver: true},
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+              { useNativeDriver: true }
             )}
             horizontal
-            data={ lavajatos}
+            data={lavajatos}
             contentContainerStyle={{
               paddingVertical: 30,
               paddingLeft: 20,
               paddingRight: cardWidth / 2 - 40,
             }}
             showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => <Card lavajatos={item} index={index} />}
+            renderItem={({ item, index }) => (
+              <Card lavajatos={item} index={index} />
+            )}
             snapToInterval={cardWidth}
           />
         </View>
         <View
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            flexDirection: "row",
+            justifyContent: "space-between",
             marginHorizontal: 20,
-          }}>
-          <Text style={{fontWeight: 'bold', color: COLORS.grey}}>
+          }}
+        >
+          <Text style={{ fontWeight: "bold", color: COLORS.grey }}>
             Top Lava Jatos
           </Text>
-          <Text style={{color: COLORS.grey}}>Show all</Text>
+          <Text style={{ color: COLORS.grey }}>Show all</Text>
         </View>
         <FlatList
           data={lavajatos}
@@ -222,7 +241,7 @@ const HomeScreen = ({navigation}) => {
             marginTop: 20,
             paddingBottom: 30,
           }}
-          renderItem={({item}) => <TopLavaJatoCard lavajatos={item} />}
+          renderItem={({ item }) => <TopLavaJatoCard lavajatos={item} />}
         />
       </ScrollView>
     </SafeAreaView>
@@ -232,8 +251,8 @@ const HomeScreen = ({navigation}) => {
 const style = StyleSheet.create({
   header: {
     marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
   },
   searchInputContainer: {
@@ -243,18 +262,18 @@ const style = StyleSheet.create({
     marginLeft: 20,
     borderTopLeftRadius: 30,
     borderBottomLeftRadius: 30,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   categoryListContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginHorizontal: 20,
     marginTop: 30,
   },
   categoryListText: {
     fontSize: 17,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   card: {
     height: 280,
@@ -266,7 +285,7 @@ const style = StyleSheet.create({
   },
   cardImage: {
     height: 200,
-    width: '100%',
+    width: "100%",
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
@@ -274,27 +293,27 @@ const style = StyleSheet.create({
     height: 60,
     width: 80,
     backgroundColor: COLORS.primary,
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1,
     right: 0,
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardDetails: {
     height: 100,
     borderRadius: 15,
     backgroundColor: COLORS.white,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     padding: 20,
-    width: '100%',
+    width: "100%",
   },
   cardOverLay: {
     height: 280,
     backgroundColor: COLORS.white,
-    position: 'absolute',
+    position: "absolute",
     zIndex: 100,
     width: cardWidth,
     borderRadius: 15,
@@ -309,7 +328,7 @@ const style = StyleSheet.create({
   },
   TopLavaJatoCardImage: {
     height: 80,
-    width: '100%',
+    width: "100%",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
   },
