@@ -27,7 +27,7 @@ Agora basta abrir o emulador pelo seu computador, ou o aplicativo do Expo no seu
 
 ## 🤝 Créditos
 
-@lipefreire @josrafael @vduperron
+@josrafael @lipefreire @vduperron
 
 ## 🧱Status: Em desenvolvimento
 
